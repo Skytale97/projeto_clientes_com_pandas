@@ -6,12 +6,12 @@ try:
 
     df['Media'] = df[['Idade', 'Renda']].mean(axis=1) #gera a coluna de média entre a idade e renda;
 
-    def cidade_mais_frequente(df): #Cria a função que indica a cidade mais frequente - parte ainda em progesso;
+    def cidade_mais_frequente(df): #Cria a função que indica a cidade mais frequente;
         contagem = df['Cidade'].value_counts()
         cidade_principal = contagem.idxmax()
         return cidade_principal
     
-    def filtrar_clientes(df): #Cria a função que  filtra os clientes;
+    def filtrar_clientes(df): #Cria a função que  filtra os clientes - parte ainda em progesso;
         rendas_altas = df[df['Renda'] >= 5000]
         rendas_medias = df[df['Renda'].between(2000, 3500)]
         rendas_baixas =df[df['Renda'] <= 2000]
