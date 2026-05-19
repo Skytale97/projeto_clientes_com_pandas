@@ -13,25 +13,30 @@ def cidade_mais_frequente(df):
     return "Coluna 'Cidade' não encontrada"
     
 def filtrar_clientes(df):
-        """
+    """
     Categoriza os clientes em três faixas de renda sem deixar lacunas.
     
     Retorna três DataFrames: (altas, medias, baixas)
     """
-        rendas_altas = df[df['Renda'] >= 5000.0]
-        rendas_medias = df[df['Renda'].between(2000.0, 4999.0)]
-        rendas_baixas = df[df['Renda'] < 2000.0]
-        return rendas_altas, rendas_medias, rendas_baixas
+    rendas_altas = df[df['Renda'] >= 5000.0]
+    rendas_medias = df[df['Renda'].between(2000.0, 4999.0)]
+    rendas_baixas = df[df['Renda'] < 2000.0]
+    return rendas_altas, rendas_medias, rendas_baixas
 
 try:
-    df = pd.read_csv('dados_salvos.csv', encoding='utf-8-sig', sep=';', thousands='.')  #lê o arquivo csv com o alfabeto latino e define o ponto e vírgula como caractere de separação, e o ponto como separador de milhares;
-    df.columns = df.columns.str.strip() #remove espaços em branco dos nomes das colunas, caso estes existam;
-    df['Nome'] = df['Nome'].astype(str).str.strip() # remove espaços em branco dos nomes dos cliente, caso estes existam, e converte a coluna para string;
+    """
+    Lê o arquivo com os separadores de decimal e milhar no padrão brasileiro, limpra as strings nas colunas e linhas, e converte os dataframes Idade e Renda para
+    int e float respectivamente com as suas devidas correções, antes de gerar uma média entre ambos;
+    """
+    df = pd.read_csv('dados_salvos.csv', encoding='utf-8-sig', sep=';', thousands='.')
+    df.columns = df.columns.str.strip() 
+    df['Nome'] = df['Nome'].astype(str).str.strip() 
+    
     df['Idade'] = df['Idade'].astype(int)
     df['Renda'] = df['Renda'].astype(str).str.strip().str.replace('.', '', regex=False)
-    df['Renda'] = pd.to_numeric(df['Renda'], errors='coerce')  #converte o dataframe "Idade" para "int" e o dataframe "Renda" para "float", e remove os pontos que separam os milhares, caso estes existam;
+    df['Renda'] = pd.to_numeric(df['Renda'], errors='coerce')  
 
-    df['Media'] = df[['Idade', 'Renda']].mean(axis=1)  #gera a coluna de média entre a idade e renda;
+    df['Media'] = df[['Idade', 'Renda']].mean(axis=1)  
 
     print("Sucesso ao ler como CSV!")  #Imprime no Terminal a Tabela;
     print("-" * 30)
