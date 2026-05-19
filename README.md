@@ -2,7 +2,7 @@
 
 ## 📋 Sobre o Projeto
 
-Projeto em andamento em Python com uso de pandas para processar e analisar dados de clientes oriundos de um arquivo csv. O scripit realiza as seguintes funções:
+Projeto em andamento em Python com uso de pandas para processar e analisar dados de clientes oriundos de um arquivo csv. O script realiza as seguintes funções:
 
 * Imprime uma tabela de clientes com informações como Renda, Cidade, e Idade;
 * Oferece uma média entre a Renda e Idade;
